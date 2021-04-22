@@ -10,6 +10,8 @@
         {{ brewery.website }}
       </p>
       <p>{{ brewery.description }}</p>
+      <p>{{ brewery.reviews }}</p>
+      <!-- <p>testing</p> -->
       <br />
       <!-- <router-link v-bind:to="`/breweries/${brewery.id}/edit`">More info...</router-link> -->
     </div>
@@ -32,7 +34,7 @@ export default {
     showBreweries: function () {
       axios.get("/api/breweries/" + this.$route.params.id).then((response) => {
         this.brewery = response.data;
-        console.log("All Breweries:", this.brewery);
+        console.log("Selected Brewery:", this.brewery);
       });
     },
   },

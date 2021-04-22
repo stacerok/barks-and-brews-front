@@ -6,7 +6,7 @@
           <div class="card-body">
             <h5 class="card-title">{{ brewery.name }}</h5>
             <p class="card-text">{{ brewery.address }}</p>
-            <router-link class="btn btn-primary" v-bind:to="`breweries/${brewery.id}`">More Info...</router-link>
+            <router-link class="btn btn-primary" v-bind:to="`./${brewery.id}`">More Info...</router-link>
           </div>
         </div>
       </div>
