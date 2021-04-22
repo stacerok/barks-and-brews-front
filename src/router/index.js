@@ -32,7 +32,7 @@ const routes = [
   { path: "/breweries", name: "BreweriesIndex", component: BreweriesIndex },
   { path: "/breweries/:id", name: "Breweries-show", component: BreweriesShow },
   { path: "/reviews", name: "ReviewsIndex", component: ReviewsIndex },
-  { path: "/reviews", name: "ReviewsNew", component: ReviewsNew },
+  { path: "/reviewsnew", name: "ReviewsNew", component: ReviewsNew },
   { path: "/reviews/:id/edit", name: "ReviewsEdit", component: ReviewsEdit },
   { path: "/signup", name: "signup", component: Signup },
   { path: "/login", name: "login", component: Login },

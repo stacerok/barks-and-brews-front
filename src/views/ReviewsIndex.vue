@@ -7,7 +7,7 @@
             <div class="card-body">
               <h5 class="card-title">{{ review.brewery_name }}</h5>
               <p class="card-text">Rating: {{ review.rating }}</p>
-              <router-link v-bind:to="`reviews/${review.id}`">
+              <router-link v-bind:to="`./reviews/${review.id}`">
                 <button type="button" class="btn btn-secondary">More Info...</button>
               </router-link>
             </div>
