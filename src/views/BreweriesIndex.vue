@@ -60,9 +60,7 @@
                   </ul> -->
 
                 <div class="d-flex justify-content-between align-items-center mb-1">
-                  <h3 class="card-title mb-0">
-                    <a href="listing-reservation.html">{{ brewery.name }}</a>
-                  </h3>
+                  <h3 class="card-title mb-0">{{ brewery.name }}</h3>
                   <!-- <button
                       class="btn-like px-2"
                       data-toggle="tooltip"

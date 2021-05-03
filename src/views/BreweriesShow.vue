@@ -1,14 +1,6 @@
 <template>
   <div class="breweries-show">
-    <section
-      class="py-7 pt-md-9 pb-md-8"
-      :style="{
-        backgroundImage: 'url(https://s3-media0.fl.yelpcdn.com/bphoto/-Onvm3FAXYTL8832CI1UOg/o.jpg)',
-        backgroundAttachment: 'fixed',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-      }"
-    >
+    <section class="py-7 pt-md-9 pb-md-8">
       <div class="container">
         <div class="d-md-flex flex-column flex-md-row justify-content-md-between align-items-end">
           <div class="mb-2 mb-md-0">
@@ -70,11 +62,15 @@
             <!-- Reviews -->
             <div class="my-6">
               <h3 class="font-weight-normal mb-6">Reviews</h3>
-              <div class="media mb-3" v-for="review in brewery" v-bind:key="review.id">
+              <div class="media mb-3" v-for="review in brewery.reviews" v-bind:key="review.id">
                 <div class="card-body">
                   <p class="card-text">
-                    {{ brewery.review }}
+                    {{ review.review }}
                   </p>
+                  <p3 class="card-text">
+                    Rating:
+                    {{ review.rating }}
+                  </p3>
                 </div>
                 <!-- <div class="media-body" v-for="review in reviews" v-bind:key="brewery.id"> -->
                 <div class="media-body">
@@ -99,12 +95,17 @@
             <div class="my-6" id="add-review">
               <h3 class="font-weight-normal mb-6">Add Review</h3>
               <!-- <span class="star add-rating-default pl-0 mb-6"></span> -->
-              <form>
+              <form v-on:submit.prevent="submit()">
+                <ul>
+                  <li class="text-danger" v-for="error in errors" v-bind:key="error">
+                    {{ error }}
+                  </li>
+                </ul>
                 <div class="form-group mb-6">
-                  <textarea class="form-control" rows="6" placeholder="Enter Your Comment"></textarea>
+                  <textarea class="form-control" rows="6" placeholder="Your review here" v-model="review"></textarea>
                 </div>
                 <div class="form-group">
-                  <button type="submit" class="btn btn-primary text-uppercase">Send Review</button>
+                  <button type="submit" class="btn btn-primary text-uppercase">Submit Review</button>
                 </div>
               </form>
             </div>
@@ -138,7 +139,6 @@ export default {
   data: function () {
     return {
       brewery: [],
-      // reviews: ,
     };
   },
   created: function () {
