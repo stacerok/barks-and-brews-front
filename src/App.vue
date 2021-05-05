@@ -17,7 +17,7 @@
         <nav class="nav-menuzord navbar-sticky">
           <div class="container clearfix">
             <div id="menuzord" class="menuzord menuzord-responsive">
-              <a href="/" class="menuzord-brand">Barks and Brews</a>
+              <a href="/breweries" class="menuzord-brand">Barks and Brews</a>
               <!-- <div class="float-right btn-wrapper">
                 <a class="btn btn-outline-primary" href="add-listings.html">
                   +
@@ -181,9 +181,6 @@ export default {
   methods: {
     isLoggedIn: function () {
       return localStorage.getItem("jwt");
-    },
-    getUserId: function () {
-      return localStorage.getItem("user_id");
     },
   },
 };
