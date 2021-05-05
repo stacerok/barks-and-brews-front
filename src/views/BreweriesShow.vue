@@ -75,7 +75,6 @@
                     Rating:
                     {{ review.rating }}
                   </p>
-                  <!-- <div v-if="getUserId() == review.user_id"> -->
                   <button
                     type="button"
                     class="btn btn-primary"
@@ -258,9 +257,6 @@ export default {
         // this.$router.push("/breweries/" + this.$route.params.id);
         window.location.reload();
       });
-    },
-    getUserId: function () {
-      return localStorage.getItem("user_id");
     },
   },
 };
