@@ -25,134 +25,6 @@
                 </a>
               </div> -->
               <ul class="menuzord-menu menuzord-right">
-                <!-- <li class="active">
-                  <a href="javascript:0">Home</a>
-                  <ul class="dropdown">
-                    <li><a href="index.html">Home Map</a></li>
-                    <li><a href="index-2.html">Home Travel</a></li>
-                    <li><a href="index-3.html">Home City</a></li>
-                    <li><a href="index-4.html">Home Automobile</a></li>
-                  </ul>
-                </li>
-                <li class="">
-                  <a href="javascript:0">Listing</a>
-                  <div class="megamenu">
-                    <div class="megamenu-row">
-                      <div class="col4">
-                        <ul class="list-unstyled">
-                          <li>
-                            <h5 class="heading">
-                              <i class="fas fa-map mr-2 text-primary" aria-hidden="true"></i>
-                              Half Screen Map
-                            </h5>
-                          </li>
-                          <li>
-                            <a href="listings-half-screen-map-list.html">List Layout</a>
-                          </li>
-                          <li>
-                            <a href="listings-half-screen-map-grid.html">Grid Layout</a>
-                          </li>
-                        </ul>
-                        <ul class="list-unstyled">
-                          <li>
-                            <h5 class="heading">
-                              <i class="fas fa-address-book mr-2 text-primary" aria-hidden="true"></i>
-                              Listing Without Map
-                            </h5>
-                          </li>
-                          <li>
-                            <a href="listing-grid-right-sidebar-without-map.html">Grid Right Sidebar</a>
-                          </li>
-                          <li>
-                            <a href="listing-grid-fullwidth-without-map.html">Grid Fullwidth</a>
-                          </li>
-                          <li>
-                            <a href="listing-list-right-sidebar-without-map.html">List Right Sidebar</a>
-                          </li>
-                          <li>
-                            <a href="listing-list-fullwidth-without-map.html">List Fullwidth</a>
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="col4">
-                        <ul class="list-unstyled">
-                          <li>
-                            <h5 class="heading">
-                              <i class="fas fa-th-large text-primary mr-2" aria-hidden="true"></i>
-                              Listing Grid
-                            </h5>
-                          </li>
-                          <li>
-                            <a href="listing-grid-left-sidebar.html">Left Sidebar</a>
-                          </li>
-                          <li>
-                            <a href="listing-grid-right-sidebar.html">Right Sidebar</a>
-                          </li>
-                          <li>
-                            <a href="listing-grid-fullwidth.html">Fullwidth</a>
-                          </li>
-                        </ul>
-                        <ul class="list-unstyled">
-                          <li>
-                            <h5 class="heading">
-                              <i class="fas fa-th-list text-primary mr-2" aria-hidden="true"></i>
-                              Listing List
-                            </h5>
-                          </li>
-                          <li>
-                            <a href="listing-list-left-sidebar.html">Left Sidebar</a>
-                          </li>
-                          <li>
-                            <a href="listing-list-right-sidebar.html">Right Sidebar</a>
-                          </li>
-                          <li>
-                            <a href="listing-list-fullwidth.html">Fullwidth</a>
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="col4">
-                        <ul class="list-unstyled">
-                          <li>
-                            <h5 class="heading">
-                              <i class="fas fa-file-alt text-primary mr-2" aria-hidden="true"></i>
-                              Single Listing
-                            </h5>
-                          </li>
-                          <li>
-                            <a href="listing-store.html">Store Listing</a>
-                          </li>
-                          <li>
-                            <a href="listing-vendor.html">Vendor Listing</a>
-                          </li>
-                          <li>
-                            <a href="listing-event.html">Event Listing</a>
-                          </li>
-                          <li>
-                            <a href="listing-rental.html">Rental Listing</a>
-                          </li>
-                          <li>
-                            <a href="listing-reservation.html">Reservation Listing</a>
-                          </li>
-                          <li>
-                            <a href="listing-service.html">Service Listing</a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li class="">
-                  <a href="javascript:0">Pages</a>
-                  <ul class="dropdown">
-                    <li><a href="contact-us.html">Contact Us</a></li>
-                    <li><a href="terms-of-services.html">Terms and Conditions</a></li>
-                    <li><a href="pricing-table.html">Pricing Table</a></li>
-                    <li><a href="how-it-works.html">How It Works</a></li>
-                    <li><a href="user-profile.html">User Profile</a></li>
-                    <li><a href="comming-soon.html">Coming Soon</a></li>
-                    <li><a href="404.html">404 Page</a></li>
-                  </ul>
-                </li> -->
                 <li class="">
                   <a href="/breweries">All Breweries</a>
                 </li>
@@ -309,6 +181,9 @@ export default {
   methods: {
     isLoggedIn: function () {
       return localStorage.getItem("jwt");
+    },
+    getUserId: function () {
+      return localStorage.getItem("user_id");
     },
   },
 };

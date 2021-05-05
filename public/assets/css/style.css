@@ -11850,11 +11850,12 @@ button:focus {
 
 /* Banner Info */
 .banner {
-  min-height: 624px;
+  min-height: 300px;
   position: relative;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+  background-attachment: fixed;
 }
 
 .banner .banner-info {

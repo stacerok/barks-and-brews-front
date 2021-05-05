@@ -67,10 +67,15 @@
                   <p class="card-text">
                     {{ review.review }}
                   </p>
-                  <p3 class="card-text">
+                  <div v-if="$parent.getUserId() == review.user_id">
+                    <router-link v-bind:to="`/reviews/${review.id}/edit`">Update Review</router-link>
+                    <br />
+                    <button v-on:click="destroyReview(review)">Delete Review</button>
+                  </div>
+                  <p class="card-text">
                     Rating:
                     {{ review.rating }}
-                  </p3>
+                  </p>
                 </div>
                 <!-- <div class="media-body" v-for="review in reviews" v-bind:key="brewery.id"> -->
                 <div class="media-body">
@@ -95,7 +100,7 @@
             <div class="my-6" id="add-review">
               <h3 class="font-weight-normal mb-6">Add Review</h3>
               <!-- <span class="star add-rating-default pl-0 mb-6"></span> -->
-              <form v-on:submit.prevent="submit()">
+              <form v-on:submit.prevent="createReview()">
                 <ul>
                   <li class="text-danger" v-for="error in errors" v-bind:key="error">
                     {{ error }}
@@ -103,9 +108,11 @@
                 </ul>
                 <div class="form-group mb-6">
                   <textarea class="form-control" rows="6" placeholder="Your review here" v-model="review"></textarea>
+                  <br />
+                  <input class="form-control" rows="6" placeholder="Rating 1-5" v-model="rating" />
                 </div>
                 <div class="form-group">
-                  <button type="submit" class="btn btn-primary text-uppercase">Submit Review</button>
+                  <input type="submit" class="btn btn-primary" value="Submit" />
                 </div>
               </form>
             </div>
@@ -139,6 +146,7 @@ export default {
   data: function () {
     return {
       brewery: [],
+      errors: [],
     };
   },
   created: function () {
@@ -149,6 +157,26 @@ export default {
       axios.get("/api/breweries/" + this.$route.params.id).then((response) => {
         this.brewery = response.data;
         console.log("Selected Brewery:", this.brewery);
+      });
+    },
+    createReview: function () {
+      console.log("leaving a review!");
+      var params = {
+        brewery_id: this.brewery.id,
+        review: this.review,
+        rating: this.rating,
+      };
+      axios
+        .post("/api/reviews/", params)
+        .then(() => {
+          this.$router.push("/breweries/" + this.$route.params.id);
+        })
+        .catch((error) => console.log(error.response));
+    },
+    destroyReview: function (review) {
+      axios.delete("/api/reviews/" + review.id).then(() => {
+        console.log("Review Deleted");
+        this.$router.push("/breweries/" + this.$route.params.id);
       });
     },
   },
