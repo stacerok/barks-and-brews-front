@@ -108,12 +108,6 @@
                 <li class="mb-3">
                   <a href="how-it-works.html">How It Works</a>
                 </li>
-                <li class="mb-3">
-                  <a href="payment-process.html">Payment</a>
-                </li>
-                <li class="mb-3">
-                  <a href="pricing-table.html">Pricing</a>
-                </li>
               </ul>
             </div>
           </div>
@@ -181,9 +175,6 @@ export default {
   methods: {
     isLoggedIn: function () {
       return localStorage.getItem("jwt");
-    },
-    getUserId: function () {
-      return localStorage.getItem("user_id");
     },
   },
 };

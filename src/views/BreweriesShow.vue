@@ -66,7 +66,7 @@
             <!-- Reviews -->
             <div class="my-6">
               <h3 class="font-weight-normal mb-6">Reviews</h3>
-              <div class="media mb-3" v-for="review in brewery.reviews" v-bind:key="review.id">
+              <div class="media mb-3" v-for="review in brewery.reviews.slice().reverse()" v-bind:key="review.id">
                 <div class="card-body">
                   <p class="card-text">
                     {{ review.review }}
@@ -75,6 +75,7 @@
                     Rating:
                     {{ review.rating }}
                   </p>
+
                   <button
                     type="button"
                     class="btn btn-primary"
@@ -135,15 +136,15 @@
                   <div class="divider" />
                   <button type="button" class="btn btn-primary" v-on:click="destroyReview(review)">Delete</button>
                 </div>
-                <!-- <div class="media-body" v-for="review in reviews" v-bind:key="brewery.id"> -->
-                <div class="media-body">
-                  <div class="card-body">
-                    <p class="card-title"></p>
-                    <!-- <p class="card-text" v-bind:to="`./breweries/${brewery.id}`">{{ brewery.reviews_review }}</p> -->
-                    <!-- <router-link class="btn btn-primary" v-bind:to="`./breweries/${brewery.id}`">
+              </div>
+              <!-- <div class="media-body" v-for="review in reviews" v-bind:key="brewery.id"> -->
+              <div class="media-body">
+                <div class="card-body">
+                  <p class="card-title"></p>
+                  <!-- <p class="card-text" v-bind:to="`./breweries/${brewery.id}`">{{ brewery.reviews_review }}</p> -->
+                  <!-- <router-link class="btn btn-primary" v-bind:to="`./breweries/${brewery.id}`">
                       More Info...
                     </router-link> -->
-                  </div>
                 </div>
                 <p>
                   <!-- {{ brewery.review }} -->
@@ -250,6 +251,7 @@ export default {
         console.log("Success", response.data);
         window.location.reload();
       });
+      this.show = false;
     },
     destroyReview: function (review) {
       axios.delete("/api/reviews/" + review.id).then(() => {

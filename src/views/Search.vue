@@ -1,70 +1,61 @@
 <template>
-  <section
-    class="banner"
-    style="background-image: url('https://media-cdn.tripadvisor.com/media/photo-s/1c/af/fa/19/dogs-playing.jpg')"
-  >
+  <!-- <div class="main-wrapper"> -->
+  <section class="py-7 py-md-10">
     <div class="container">
-      <div class="row text-center align-items-center justify-content-center" style="height: 100px">
-        <div class="col-12">
-          <!-- Banner Info -->
-          <div class="banner-info">
-            <h1 class="text-uppercase text-white mb-4">barks and brews</h1>
-            <p class="lead text-white">Search for dog friendly breweries and restaurants in Maryland</p>
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="card card-list" v-for="brewery in filteredBreweries" v-bind:key="brewery.id">
+            <div class="row">
+              <div class="col-sm-5">
+                <div class="card-list-img">
+                  <img v-bind:src="brewery.image" v-bind:alt="brewery.name" />
+                </div>
+              </div>
+              <div class="col-sm-7">
+                <div class="card-body p-0">
+                  <div class="d-flex justify-content-between align-items-center mb-1">
+                    <h3 class="card-title mb-0">{{ brewery.name }}</h3>
+                    <button
+                      class="btn-like px-2"
+                      data-toggle="tooltip"
+                      data-placement="top"
+                      title="Favourite this listing"
+                    >
+                      <i class="far fa-heart text-primary" aria-hidden="true"></i>
+                      <span>8 k</span>
+                    </button>
+                  </div>
+                </div>
+                <span class="d-block mb-4">{{ brewery.address }}</span>
+                <p class="mb-4">Features: {{ brewery.description }}</p>
+                <div>
+                  <router-link class="btn btn-primary" v-bind:to="`./breweries/${brewery.id}`">
+                    More Info...
+                  </router-link>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <!-- Search Box -->
-          <div class="search-box-2">
-            <form class="form-row justify-content-center">
-              <div class="form-group col-md-5 col-lg-4">
-                <div class="input-group mb-2">
-                  <div class="input-group-prepend">
-                    <div class="input-group-text">Find</div>
-                  </div>
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="beer garden, outdoor, food..."
-                    v-model="keyword"
-                  />
-                </div>
-              </div>
-              <div class="form-group col-md-3 col-lg-2">
-                <button @click.prevent="checkName" type="submit" class="btn btn-block btn-primary">
-                  Search
-                  <i class="fas fa-search" aria-hidden="true"></i>
-                </button>
-              </div>
-              <div class="card card-list" v-for="brewery in results" v-bind:key="brewery.id">
-                <div class="row">
-                  <div class="col-md-4 col-xl-3">
-                    <div class="card-list-img">
-                      <img v-bind:src="brewery.image" v-bind:alt="brewery.name" />
-                      <!-- <span class="badge badge-primary">Verified</span> -->
-                    </div>
-                  </div>
+          <section class="my-5"></section>
+        </div>
 
-                  <div class="col-md-8 col-xl-9">
-                    <div class="card-body p-0">
-                      <div class="d-flex justify-content-between align-items-center mb-1">
-                        <h3 class="card-title mb-0">{{ brewery.name }}</h3>
-                      </div>
-                    </div>
-                    <span class="d-block mb-4">{{ brewery.address }}</span>
-                    <span class="d-block mb-4">Feature: {{ brewery.description }}</span>
-                    <div>
-                      <router-link class="btn btn-primary" v-bind:to="`./breweries/${brewery.id}`">
-                        More Info...
-                      </router-link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </form>
+        <div class="col-lg-4 pl-xl-6">
+          <div class="mb-6">
+            <label class="mb-4 h5 font-weight-normal text-dark" for="enter-keyowrd">What are you looking for?</label>
+            <input
+              type="text"
+              class="form-control"
+              v-model="searchValue"
+              id="search-input"
+              placeholder="outdoor, food, etc."
+            />
           </div>
         </div>
       </div>
     </div>
   </section>
+  <!-- </div> -->
 </template>
 
 <script>
@@ -75,8 +66,8 @@ export default {
   mixins: [Vue2Filters.mixin],
   data: function () {
     return {
-      keyword: "",
-      brewery: [],
+      breweries: [],
+      searchValue: "",
     };
   },
   created: function () {
@@ -89,21 +80,21 @@ export default {
         console.log("All breweries:", this.breweries);
       });
     },
-    checkName() {
-      console.log(`Searched breweries: ${this.keyword}`);
-      axios
-        .get("/api/breweries/", {
-          params: {
-            search: this.keyword,
-          },
-        })
-        .then((res) => {
-          console.log(res.data.results);
-          // this.breweries = res.data.results;
-        })
-        .catch((err) => {
-          console.log(err);
+  },
+  computed: {
+    filteredBreweries() {
+      let tempReviews = this.breweries;
+
+      // Process search input
+      if (this.searchValue != "" && this.searchValue) {
+        tempReviews = tempReviews.filter((item) => {
+          return (
+            item.description.toUpperCase().includes(this.searchValue.toUpperCase()) ||
+            item.address.toUpperCase().includes(this.searchValue.toUpperCase())
+          );
         });
+      }
+      return tempReviews;
     },
   },
 };

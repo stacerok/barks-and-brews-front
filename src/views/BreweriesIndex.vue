@@ -24,18 +24,18 @@
                     <input
                       type="text"
                       class="form-control"
-                      placeholder="beer garden, outdoor, food..."
+                      placeholder="feature or ZIP"
                       v-model="searchValue"
                       id="search-input"
                     />
                   </div>
                 </div>
-                <!-- <div class="form-group col-md-3 col-lg-2">
-                  <button type="submit" class="btn btn-block btn-primary">
+                <div class="form-group col-md-3 col-lg-2">
+                  <button @click.prevent="checkName" class="btn btn-block btn-primary">
                     Search
                     <i class="fas fa-search" aria-hidden="true"></i>
                   </button>
-                </div> -->
+                </div>
               </form>
             </div>
           </div>
@@ -83,6 +83,7 @@
 <script>
 import axios from "axios";
 import Vue2Filters from "vue2-filters";
+// import { debounce } from "lodash";
 
 export default {
   mixins: [Vue2Filters.mixin],
@@ -94,6 +95,13 @@ export default {
   },
   created: function () {
     this.indexBreweries();
+  //   this.debouncenName = debounce(this.searchValue, 1000);
+  // },
+  // watch: {
+  //   searchValue() {
+  //     if (!this.searchValue) return;
+  //     this.debouncenName();
+  //   },
   },
   methods: {
     indexBreweries: function () {
@@ -102,6 +110,22 @@ export default {
         console.log("All breweries:", this.breweries);
       });
     },
+    // checkName() {
+    //   console.log(`Breweries: ${this.searchValue}`);
+    //   axios
+    //     .get("/api/breweries/", {
+    //       params: {
+    //         search: this.searchValue,
+    //       },
+    //     })
+    //     .then((res) => {
+    //       console.log(res.data.results);
+    //       this.breweries = res.data.results;
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //     });
+    // },
   },
   computed: {
     filteredBreweries() {
@@ -110,7 +134,10 @@ export default {
       // Process search input
       if (this.searchValue != "" && this.searchValue) {
         tempReviews = tempReviews.filter((item) => {
-          return item.description.toUpperCase().includes(this.searchValue.toUpperCase());
+          return (
+            item.description.toUpperCase().includes(this.searchValue.toUpperCase()) ||
+            item.address.toUpperCase().includes(this.searchValue.toUpperCase())
+          );
         });
       }
       return tempReviews;
