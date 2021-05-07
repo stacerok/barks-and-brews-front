@@ -11853,13 +11853,13 @@ button:focus {
   min-height: 350px;
   position: relative;
   background-repeat: no-repeat;
-  background-position: center center;
+  background-position: bottom center;
   background-size: cover;
   background-attachment: fixed;
 }
 
 .banner .banner-info {
-  margin: 3.75rem 0 3.75rem;
+  margin: 1.75rem 0 1.75rem;
 }
 
 .banner .banner-info h1 {

@@ -2,7 +2,7 @@
   <div class="main-wrapper">
     <section
       class="banner"
-      style="background-image: url('https://media-cdn.tripadvisor.com/media/photo-s/1c/af/fa/19/dogs-playing.jpg')"
+      style="background-image: url('https://s3-media0.fl.yelpcdn.com/bphoto/sRx1AYdXORWEVXHR0UK4HA/o.jpg')"
     >
       <div class="container">
         <div class="row text-center align-items-center justify-content-center" style="height: 100px">
@@ -56,15 +56,6 @@
               <div class="card-body p-0">
                 <div class="d-flex justify-content-between align-items-center mb-1">
                   <h3 class="card-title mb-0">{{ brewery.name }}</h3>
-                  <!-- <button
-                      class="btn-like px-2"
-                      data-toggle="tooltip"
-                      data-placement="top"
-                      title="Favourite this listing"
-                    >
-                      <i class="far fa-heart text-primary" aria-hidden="true"></i>
-                      <span>8 k</span>
-                    </button> -->
                 </div>
               </div>
               <span class="d-block mb-4">{{ brewery.address }}</span>
