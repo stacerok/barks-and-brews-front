@@ -24,7 +24,7 @@
                     <input
                       type="text"
                       class="form-control"
-                      placeholder="feature or ZIP"
+                      placeholder="Feature, City, or ZIP"
                       v-model="searchValue"
                       id="search-input"
                     />

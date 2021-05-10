@@ -75,66 +75,67 @@
                     Rating:
                     {{ review.rating }}
                   </p>
+                  <div v-if="$parent.getUserId() == review.user_id">
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      data-toggle="modal"
+                      data-target="#review-details"
+                      v-on:click="showReview(review)"
+                    >
+                      Update
+                    </button>
 
-                  <button
-                    type="button"
-                    class="btn btn-primary"
-                    data-toggle="modal"
-                    data-target="#review-details"
-                    v-on:click="showReview(review)"
-                  >
-                    Update
-                  </button>
-
-                  <!-- Modal -->
-                  <div
-                    class="modal fade"
-                    id="review-details"
-                    tabindex="-1"
-                    role="dialog"
-                    aria-labelledby="exampleModalCenterTitle"
-                    aria-hidden="true"
-                  >
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLongTitle">Update Review</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                          <p>
-                            <textarea
-                              style="min-width: 100%"
-                              rows="6"
-                              type="text"
-                              v-model="currentReview.review"
-                              placeholder="Updated
+                    <!-- Modal -->
+                    <div
+                      class="modal fade"
+                      id="review-details"
+                      tabindex="-1"
+                      role="dialog"
+                      aria-labelledby="exampleModalCenterTitle"
+                      aria-hidden="true"
+                    >
+                      <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Update Review</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <p>
+                              <textarea
+                                style="min-width: 100%"
+                                rows="6"
+                                type="text"
+                                v-model="currentReview.review"
+                                placeholder="Updated
                             Review Here"
-                            />
-                          </p>
-                          <p>
-                            Rating:
-                            <input
-                              type="text"
-                              v-model="currentReview.rating"
-                              placeholder="Rate 1-5"
-                              style="min-width: 100%"
-                            />
-                          </p>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-primary" v-on:click="updateReview(currentReview)">
-                            Update
-                          </button>
+                              />
+                            </p>
+                            <p>
+                              Rating:
+                              <input
+                                type="text"
+                                v-model="currentReview.rating"
+                                placeholder="Rate 1-5"
+                                style="min-width: 100%"
+                              />
+                            </p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" v-on:click="updateReview(currentReview)">
+                              Update
+                            </button>
+                          </div>
                         </div>
                       </div>
                     </div>
+                    <div class="divider" />
+                    <button type="button" class="btn btn-primary" v-on:click="destroyReview(review)">Delete</button>
                   </div>
-                  <div class="divider" />
-                  <button type="button" class="btn btn-primary" v-on:click="destroyReview(review)">Delete</button>
                 </div>
               </div>
               <!-- <div class="media-body" v-for="review in reviews" v-bind:key="brewery.id"> -->
@@ -183,7 +184,7 @@
             <!-- Single listing Map -->
             <div class="map-sidebar border rounded mb-5">
               <div id="single-listing-map" data-lat="40.705793" data-lag="-74.006207">
-                <img v-bind:src="brewery.image" v-bind:alt="brewery.name" style="width: 314px; height: 290px" />
+                <img v-bind:src="brewery.image" v-bind:alt="brewery.name" style="width: 323px; height: 250px" />
               </div>
               <div class="px-6 py-5">
                 <ul class="list-unstyled mb-0">
